@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- ===================================================================
+       EDIT ME: Page title (shows in browser tab) and meta description
+       =================================================================== -->
+  <title>Panth's Achievements</title>
+  <meta name="description" content="A showcase of Panth's academic, karate, music, and school achievements." />
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+          },
+          colors: {
+            // ===========================================================
+            // EDIT ME: tweak the palette here if you want different tones
+            // Professional / academic palette: deep navy + warm gold accent
+            // ===========================================================
+            brand: {
+              navy: '#1E293B',   // deep navy (headers, footer)
+              indigo: '#1E3A8A', // primary accent
+              gold: '#D4A017',   // warm gold accent (achievements/awards)
+              cream: '#F8FAFC',  // light background tone
+            }
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.25s ease-out forwards',
+            'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(16px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* Small extras Tailwind doesn't cover cleanly */
+    html { scroll-behavior: smooth; }
+
+    .filter-btn.active {
+      box-shadow: inset 0 0 0 9999px rgba(0,0,0,0.06);
+    }
+
+    /* Lightbox image fade/scale-in */
+    #lightbox.open #lightbox-img {
+      animation: lbZoom 0.25s ease-out forwards;
+    }
+    @keyframes lbZoom {
+      0% { opacity: 0; transform: scale(0.92); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+
+  <!-- =================================================================
+       HERO SECTION
+       EDIT ME: name, bio text, and profile photo below
+       ================================================================= -->
+  <header class="relative overflow-hidden bg-gradient-to-br from-brand-navy via-brand-indigo to-slate-800">
+
+    <!-- Decorative education-themed pattern (graduation cap, book, pencil,
+         lightbulb, atom). Purely CSS/SVG, no external images needed. -->
+    <svg class="absolute inset-0 w-full h-full opacity-[0.08] pointer-events-none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <pattern id="eduPattern" width="220" height="220" patternUnits="userSpaceOnUse">
+          <!-- graduation cap -->
+          <g stroke="#D4A017" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 40 L60 22 L105 40 L60 58 Z" />
+            <path d="M38 49 L38 70 Q60 82 82 70 L82 49" />
+            <line x1="105" y1="40" x2="105" y2="62" />
+            <circle cx="105" cy="66" r="2.5" fill="#D4A017" />
+          </g>
+          <!-- open book -->
+          <g transform="translate(115,95)" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M0 4 C16 -4 36 -4 52 4 L52 40 C36 32 16 32 0 40 Z" />
+            <path d="M52 4 C68 -4 88 -4 104 4 L104 40 C88 32 68 32 52 40 Z" />
+            <line x1="52" y1="4" x2="52" y2="40" />
+          </g>
+          <!-- pencil -->
+          <g transform="translate(28,145) rotate(40)" stroke="#D4A017" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="0" y="0" width="14" height="58" rx="2" />
+            <path d="M0 58 L7 73 L14 58 Z" />
+            <line x1="0" y1="46" x2="14" y2="46" />
+          </g>
+          <!-- lightbulb -->
+          <g transform="translate(170,32)" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="0" cy="0" r="15" />
+            <line x1="-6" y1="14" x2="6" y2="14" />
+            <line x1="-4" y1="20" x2="4" y2="20" />
+            <line x1="0" y1="-15" x2="0" y2="-22" />
+            <line x1="11" y1="-11" x2="17" y2="-17" />
+            <line x1="-11" y1="-11" x2="-17" y2="-17" />
+          </g>
+          <!-- atom -->
+          <g transform="translate(175,168)" stroke="#D4A017" stroke-width="1.5" fill="none">
+            <ellipse cx="0" cy="0" rx="22" ry="9" />
+            <ellipse cx="0" cy="0" rx="22" ry="9" transform="rotate(60)" />
+            <ellipse cx="0" cy="0" rx="22" ry="9" transform="rotate(120)" />
+            <circle cx="0" cy="0" r="3" fill="#D4A017" />
+          </g>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#eduPattern)" />
+    </svg>
+
+    <div class="relative z-10 max-w-5xl mx-auto px-6 py-16 md:py-24 flex flex-col md:flex-row items-center gap-10">
+
+      <!-- Profile photo -->
+      <div class="flex-shrink-0">
+        <img
+          src="gallery/Panth.jpg"
+          alt="Panth's profile photo"
+          class="w-40 h-40 md:w-56 md:h-56 rounded-full object-cover ring-8 ring-brand-gold/80 shadow-xl"
+        />
+      </div>
+
+      <div class="text-center md:text-left">
+        <p class="text-sm md:text-base font-semibold uppercase tracking-widest text-brand-gold mb-2">
+          Student Portfolio
+        </p>
+        <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-4">
+          Panth's Achievements
+        </h1>
+        <p class="text-base md:text-lg text-slate-300 max-w-xl mx-auto md:mx-0">
+          <!-- EDIT ME: short bio -->
+          A dedicated learner building a strong foundation across academics,
+          discipline, and the arts. This portfolio highlights milestones in
+          education, Karate, music, and school life.
+        </p>
+      </div>
+    </div>
+
+    <!-- subtle glow accent for depth -->
+    <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-brand-gold/10 rounded-full blur-3xl"></div>
+  </header>
+
+  <!-- =================================================================
+       CATEGORY FILTERS
+       EDIT ME: change labels/order here if you add new categories.
+       Keep data-filter values in sync with the CATEGORY_MAP in the
+       script below (lowercase keys).
+       ================================================================= -->
+  <nav class="sticky top-0 z-30 bg-slate-50/90 backdrop-blur border-b border-slate-200">
+    <div class="max-w-5xl mx-auto px-6 py-4 flex flex-wrap justify-center gap-3">
+      <button data-filter="all" class="filter-btn active px-5 py-2 rounded-full font-medium text-sm bg-brand-navy text-white shadow transition hover:scale-105">
+        All
+      </button>
+      <button data-filter="academics" class="filter-btn px-5 py-2 rounded-full font-medium text-sm bg-indigo-100 text-indigo-900 shadow-sm transition hover:scale-105 hover:shadow-md">
+        Academics
+      </button>
+      <button data-filter="karate" class="filter-btn px-5 py-2 rounded-full font-medium text-sm bg-amber-100 text-amber-900 shadow-sm transition hover:scale-105 hover:shadow-md">
+        Karate
+      </button>
+      <button data-filter="music" class="filter-btn px-5 py-2 rounded-full font-medium text-sm bg-violet-100 text-violet-900 shadow-sm transition hover:scale-105 hover:shadow-md">
+        Music
+      </button>
+      <button data-filter="school" class="filter-btn px-5 py-2 rounded-full font-medium text-sm bg-emerald-100 text-emerald-900 shadow-sm transition hover:scale-105 hover:shadow-md">
+        School
+      </button>
+    </div>
+  </nav>
+
+  <!-- =================================================================
+       GALLERY GRID
+       Cards are generated automatically by JavaScript below from the
+       files in /gallery. You normally don't need to edit this section.
+       ================================================================= -->
+  <main class="max-w-6xl mx-auto px-6 py-12">
+    <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Cards injected here by JS -->
+    </div>
+
+    <p id="empty-state" class="hidden text-center text-slate-500 mt-12">
+      No achievements found in this category yet. Check back soon!
+    </p>
+  </main>
+
+  <!-- =================================================================
+       FOOTER
+       EDIT ME: links / copyright text
+       ================================================================= -->
+  <footer class="bg-brand-navy text-slate-300 text-sm border-t-2 border-brand-gold/60">
+    <div class="max-w-5xl mx-auto px-6 py-8 text-center">
+      <p>&copy; <span id="year"></span> Panth's Achievements. Made with ❤️.</p>
+    </div>
+  </footer>
+
+  <!-- =================================================================
+       LIGHTBOX MODAL
+       ================================================================= -->
+  <div id="lightbox" class="hidden fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
+    <button id="lightbox-close" aria-label="Close" class="absolute top-4 right-4 text-white text-3xl leading-none w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition">
+      &times;
+    </button>
+
+    <!-- Previous / Next navigation -->
+    <button id="lightbox-prev" aria-label="Previous image" class="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 text-white text-4xl leading-none w-12 h-12 flex items-center justify-center rounded-full hover:bg-white/10 transition">
+      &#8249;
+    </button>
+    <button id="lightbox-next" aria-label="Next image" class="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 text-white text-4xl leading-none w-12 h-12 flex items-center justify-center rounded-full hover:bg-white/10 transition">
+      &#8250;
+    </button>
+
+    <figure class="max-w-4xl w-full">
+      <img id="lightbox-img" src="" alt="" class="w-full max-h-[75vh] object-contain rounded-lg shadow-2xl" />
+      <figcaption class="text-center text-white mt-4">
+        <p id="lightbox-title" class="text-lg font-semibold"></p>
+        <p id="lightbox-date" class="text-sm text-slate-300"></p>
+      </figcaption>
+    </figure>
+  </div>
+
+  <script>
+    // ===================================================================
+    // CONFIG
+    // EDIT ME: set these to your GitHub username and repo name so the
+    // page can automatically list any image you add to /gallery without
+    // touching this file again.
+    //
+    // For panth.github.io (a user/organization site) this is usually:
+    //   GITHUB_OWNER = 'panth'   (your GitHub username)
+    //   GITHUB_REPO  = 'panth.github.io'
+    //   GITHUB_BRANCH = 'main'   (or 'master')
+    //
+    // If left incorrect/unreachable, the page falls back to the
+    // FALLBACK_IMAGES list below, which already includes every image
+    // currently in the gallery folder.
+    // ===================================================================
+    const GITHUB_OWNER = 'panth';
+    const GITHUB_REPO = 'panth.github.io';
+    const GITHUB_BRANCH = 'main';
+    const GALLERY_PATH = 'gallery';
+
+    // ===================================================================
+    // Category mapping based on filename prefix:
+    //   starts with a digit -> Academics
+    //   starts with K        -> Karate
+    //   starts with M        -> Music
+    //   starts with S        -> School
+    // EDIT ME: add more prefixes/categories here if needed.
+    // ===================================================================
+    const CATEGORY_RULES = [
+      { test: name => /^[0-9]/i.test(name), key: 'academics', label: 'Academics' },
+      { test: name => /^k/i.test(name),     key: 'karate',    label: 'Karate' },
+      { test: name => /^m/i.test(name),     key: 'music',     label: 'Music' },
+      { test: name => /^s/i.test(name),     key: 'school',    label: 'School' },
+    ];
+
+    // Visual style per category
+    const CATEGORY_STYLES = {
+      academics: { badge: 'bg-indigo-100 text-indigo-900',  ring: 'ring-indigo-200' },
+      karate:    { badge: 'bg-amber-100 text-amber-900',    ring: 'ring-amber-200' },
+      music:     { badge: 'bg-violet-100 text-violet-900',  ring: 'ring-violet-200' },
+      school:    { badge: 'bg-emerald-100 text-emerald-900', ring: 'ring-emerald-200' },
+      other:     { badge: 'bg-slate-100 text-slate-800',    ring: 'ring-slate-200' },
+    };
+
+    // Generic per-category description used when a custom one isn't
+    // provided in MANIFEST_OVERRIDES below.
+    const CATEGORY_DESCRIPTIONS = {
+      academics: 'A proud academic milestone.',
+      karate:    'Another step forward on the Karate journey.',
+      music:     'A wonderful musical moment.',
+      school:    'A special memory from school.',
+      other:     'A special achievement worth celebrating.',
+    };
+
+    // ===================================================================
+    // MANIFEST OVERRIDES
+    // EDIT ME: To customize the title, date, or description for a
+    // specific image, add an entry here keyed by the exact filename
+    // (as it appears in the gallery/ folder). Anything you don't
+    // override is generated automatically from the filename.
+    //
+    // Example:
+    // 'K5-Karate-YellowBelt.jpg': {
+    //   title: 'Yellow Belt Achieved!',
+    //   date: 'March 2026',
+    //   description: 'Panth earned his Yellow Belt in Karate.'
+    // },
+    // ===================================================================
+    const MANIFEST_OVERRIDES = {
+      // 'filename.jpg': { title: '...', date: '...', description: '...' },
+    };
+
+    // ===================================================================
+    // FALLBACK IMAGE LIST
+    // This is the list of images currently in /gallery. If the GitHub
+    // API lookup (configured above) fails or isn't set up yet, the page
+    // will use this list instead so the site still works.
+    //
+    // EDIT ME: if you add new images and the GitHub API isn't working
+    // for some reason, just add the new filename to this array too.
+    // ===================================================================
+    const FALLBACK_IMAGES = [
+      '1-MyApple_BackwardRunning.jpg',
+      '2-Bright_RhymePresentation.jpg',
+      '3-CGR_PP1_PoemRecitation.jpg',
+      '4-CGR_PP2_NeatHandwriting.jpg',
+      '5-CGR_PP2_WonderKid.jpg',
+      '6-CGR_PP2_EnglishRecitation.jpg',
+      '7-CGR_PP2_HindiRecitation.jpg',
+      '8-CGR_PP2_FancyDress.jpg',
+      '9-KGCertificate.jpg',
+      '10-Grade1-PT1-English.jpg',
+      '11-Grade1-PT1-Hindi.jpg',
+      '12-Grade1-PT1-Maths.jpg',
+      '13-Grade1-PT2-Hindi.jpg',
+      '14-Grade1-PT3-Hindi.jpg',
+      '15-Grade1-PT4-Hindi.jpg',
+      '16-Grade1-LogiQIds-FirstStage.jpg',
+      '17-Grade1-LogiQIds-Final.jpg',
+      '18-Grade2-PT1-Hindi.jpg',
+      '19-Grade2-PT1-EVS.jpg',
+      '20-Grade2-PT2-Hindi.jpg',
+      '21-Grade2-PT3-Hindi.jpg',
+      '22-Grade2-PT4-Hindi.jpg',
+      '23-Grade2-LogiQIds-FirstStage.jpg',
+      '24-Grade2-CursiveEnglish.jpg',
+      '25-Grade2-ScienceOlympiad-Gold-1.jpg',
+      '25-Grade2-ScienceOlympiad-Gold-2.jpg',
+      '26-Grade3-CursiveHindi.jpg',
+      '27-Grade3-PT3-Hindi.jpg',
+      'K1-Taekwondo-Yellow.jpg',
+      'K2-Taekwondo-Yellow-1.jpg',
+      'K3-Taekwondo-Yellow-1Medal.jpg',
+      'K4-Taekwondo-Green-1.jpg',
+      'K5-Karate-YellowBelt.jpg',
+      'M1-MusicUtsav-June2026.jpg',
+      'M2-MusicUtsav-June2026.jpg',
+      'S1-PP2.jpg',
+      'S2-Grade1.jpg',
+      'S3-Grade2.jpg',
+      'S4-Grade3.jpg',
+    ];
+
+    const IMAGE_EXT_RE = /\.(jpe?g|png|gif|webp)$/i;
+
+    // Turn a filename like "25-Grade2-ScienceOlympiad-Gold-1.jpg" into a
+    // readable title like "Grade 2 Science Olympiad Gold 1".
+    function titleFromFilename(filename) {
+      let name = filename.replace(IMAGE_EXT_RE, '');
+      // Strip the leading category code, e.g. "25-" or "K5-"
+      name = name.replace(/^[A-Za-z]?\d+-/, '');
+      // Replace separators with spaces
+      name = name.replace(/[_-]+/g, ' ');
+      // Split camelCase words: "ScienceOlympiad" -> "Science Olympiad"
+      name = name.replace(/([a-z])([A-Z])/g, '$1 $2');
+      // Split letters/numbers: "Grade2" -> "Grade 2", "June2026" -> "June 2026"
+      name = name.replace(/([A-Za-z])(\d)/g, '$1 $2');
+      name = name.replace(/(\d)([A-Za-z])/g, '$1 $2');
+      // Collapse extra whitespace
+      return name.replace(/\s+/g, ' ').trim();
+    }
+
+    function categorize(filename) {
+      const rule = CATEGORY_RULES.find(r => r.test(filename));
+      return rule || { key: 'other', label: 'Other' };
+    }
+
+    function buildItem(filename) {
+      const override = MANIFEST_OVERRIDES[filename] || {};
+      const category = categorize(filename);
+      return {
+        filename,
+        src: `${GALLERY_PATH}/${filename}`,
+        category: category.key,
+        categoryLabel: category.label,
+        title: override.title || titleFromFilename(filename),
+        date: override.date || '',
+        description: override.description || CATEGORY_DESCRIPTIONS[category.key] || CATEGORY_DESCRIPTIONS.other,
+      };
+    }
+
+    // Try to fetch the live folder listing from GitHub so newly added
+    // images show up automatically. Falls back to FALLBACK_IMAGES.
+    async function getGalleryFilenames() {
+      try {
+        const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GALLERY_PATH}?ref=${GITHUB_BRANCH}`;
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`GitHub API responded ${res.status}`);
+        const data = await res.json();
+        const names = data
+          .filter(entry => entry.type === 'file' && IMAGE_EXT_RE.test(entry.name))
+          .map(entry => entry.name);
+        if (names.length > 0) return names;
+        throw new Error('No images found via API');
+      } catch (err) {
+        console.warn('Falling back to static image list:', err.message);
+        return FALLBACK_IMAGES;
+      }
+    }
+
+    // ---------------------------------------------------------------
+    // Rendering
+    // ---------------------------------------------------------------
+    const grid = document.getElementById('gallery-grid');
+    const emptyState = document.getElementById('empty-state');
+
+    function renderCard(item, index) {
+      const style = CATEGORY_STYLES[item.category] || CATEGORY_STYLES.other;
+      const card = document.createElement('article');
+      card.className = `gallery-card group bg-white rounded-2xl shadow-sm ring-1 ${style.ring} overflow-hidden ` +
+        `transition transform hover:-translate-y-1 hover:shadow-xl cursor-pointer opacity-0 animate-fade-in-up`;
+      card.style.animationDelay = `${Math.min(index * 40, 400)}ms`;
+      card.dataset.category = item.category;
+
+      card.innerHTML = `
+        <div class="aspect-[4/3] overflow-hidden bg-slate-100 flex items-center justify-center">
+          <img
+            src="${item.src}"
+            alt="${item.title}"
+            loading="lazy"
+            class="w-full h-full object-contain transition duration-300 group-hover:scale-105"
+            onerror="this.src='https://placehold.co/600x450/E2E8F0/64748B?text=Image+Coming+Soon'"
+          />
+        </div>
+        <div class="p-4">
+          <span class="inline-block text-xs font-semibold px-2.5 py-1 rounded-full ${style.badge} mb-2">
+            ${item.categoryLabel}
+          </span>
+          <h3 class="font-semibold text-slate-800 leading-snug">${item.title}</h3>
+          ${item.date ? `<p class="text-xs text-slate-400 mt-1">${item.date}</p>` : ''}
+          <p class="text-sm text-slate-500 mt-2">${item.description}</p>
+        </div>
+      `;
+
+      card.addEventListener('click', () => openLightbox(index));
+      return card;
+    }
+
+    function applyFilter(category) {
+      const cards = grid.querySelectorAll('.gallery-card');
+      let visibleCount = 0;
+      cards.forEach(card => {
+        const show = category === 'all' || card.dataset.category === category;
+        card.classList.toggle('hidden', !show);
+        if (show) visibleCount++;
+      });
+      emptyState.classList.toggle('hidden', visibleCount > 0);
+    }
+
+    // ---------------------------------------------------------------
+    // Filters
+    // ---------------------------------------------------------------
+    let currentFilter = 'all';
+
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentFilter = btn.dataset.filter;
+        filterButtons.forEach(b => {
+          b.classList.remove('active', 'bg-brand-navy', 'text-white', 'shadow');
+          // restore each button's resting style based on its filter
+          const resting = {
+            all: 'bg-brand-navy text-white shadow',
+            academics: 'bg-indigo-100 text-indigo-900 shadow-sm',
+            karate: 'bg-amber-100 text-amber-900 shadow-sm',
+            music: 'bg-violet-100 text-violet-900 shadow-sm',
+            school: 'bg-emerald-100 text-emerald-900 shadow-sm',
+          };
+          b.className = `filter-btn px-5 py-2 rounded-full font-medium text-sm transition hover:scale-105 ${resting[b.dataset.filter]}`;
+        });
+        btn.classList.add('active');
+        btn.className = 'filter-btn active px-5 py-2 rounded-full font-medium text-sm bg-brand-navy text-white shadow transition hover:scale-105';
+        applyFilter(btn.dataset.filter);
+      });
+    });
+
+    // ---------------------------------------------------------------
+    // Lightbox
+    // ---------------------------------------------------------------
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxTitle = document.getElementById('lightbox-title');
+    const lightboxDate = document.getElementById('lightbox-date');
+    const lightboxClose = document.getElementById('lightbox-close');
+    const lightboxPrev = document.getElementById('lightbox-prev');
+    const lightboxNext = document.getElementById('lightbox-next');
+
+    let allItems = [];
+    let currentIndex = -1;
+
+    // Returns indices of items matching the active filter, in display order.
+    function visibleIndices() {
+      return allItems
+        .map((item, i) => i)
+        .filter(i => currentFilter === 'all' || allItems[i].category === currentFilter);
+    }
+
+    function showLightboxItem(index) {
+      const item = allItems[index];
+      currentIndex = index;
+      lightboxImg.src = item.src;
+      lightboxImg.alt = item.title;
+      lightboxTitle.textContent = item.title;
+      lightboxDate.textContent = item.date || '';
+    }
+
+    function openLightbox(index) {
+      showLightboxItem(index);
+      lightbox.classList.remove('hidden');
+      lightbox.classList.add('flex', 'open', 'animate-fade-in');
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closeLightbox() {
+      lightbox.classList.add('hidden');
+      lightbox.classList.remove('flex', 'open', 'animate-fade-in');
+      lightboxImg.src = '';
+      currentIndex = -1;
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    function step(direction) {
+      if (currentIndex === -1) return;
+      const visible = visibleIndices();
+      const pos = visible.indexOf(currentIndex);
+      if (pos === -1) return;
+      const nextPos = (pos + direction + visible.length) % visible.length;
+      showLightboxItem(visible[nextPos]);
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxPrev.addEventListener('click', () => step(-1));
+    lightboxNext.addEventListener('click', () => step(1));
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (lightbox.classList.contains('hidden')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') step(-1);
+      if (e.key === 'ArrowRight') step(1);
+    });
+
+    // ---------------------------------------------------------------
+    // Init
+    // ---------------------------------------------------------------
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    getGalleryFilenames().then(filenames => {
+      allItems = filenames.map(buildItem);
+      allItems.forEach((item, index) => grid.appendChild(renderCard(item, index)));
+      applyFilter('all');
+    });
+  </script>
+</body>
+</html>
