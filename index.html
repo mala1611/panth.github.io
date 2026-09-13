@@ -165,10 +165,10 @@
        ================================================================= -->
   <nav class="sticky top-0 z-30 bg-slate-50/90 backdrop-blur border-b border-slate-200">
     <div class="max-w-5xl mx-auto px-6 py-4 flex flex-wrap justify-center gap-3">
-      <button data-filter="all" class="filter-btn active px-5 py-2 rounded-full font-medium text-sm bg-brand-navy text-white shadow transition hover:scale-105">
+      <button data-filter="all" class="filter-btn px-5 py-2 rounded-full font-medium text-sm bg-brand-navy text-white shadow transition hover:scale-105">
         All
       </button>
-      <button data-filter="academics" class="filter-btn px-5 py-2 rounded-full font-medium text-sm bg-indigo-100 text-indigo-900 shadow-sm transition hover:scale-105 hover:shadow-md">
+      <button data-filter="academics" class="filter-btn active px-5 py-2 rounded-full font-medium text-sm bg-indigo-100 text-indigo-900 shadow-sm transition hover:scale-105 hover:shadow-md">
         Academics
       </button>
       <button data-filter="karate" class="filter-btn px-5 py-2 rounded-full font-medium text-sm bg-amber-100 text-amber-900 shadow-sm transition hover:scale-105 hover:shadow-md">
@@ -471,7 +471,7 @@
     // ---------------------------------------------------------------
     // Filters
     // ---------------------------------------------------------------
-    let currentFilter = 'all';
+    let currentFilter = 'academics';
 
     const filterButtons = document.querySelectorAll('.filter-btn');
     filterButtons.forEach(btn => {
@@ -571,7 +571,7 @@
       // Show the most recently added images first.
       allItems = filenames.map(buildItem).reverse();
       allItems.forEach((item, index) => grid.appendChild(renderCard(item, index)));
-      applyFilter('all');
+      applyFilter(currentFilter);
     });
   </script>
 </body>
