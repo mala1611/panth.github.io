@@ -568,7 +568,8 @@
     document.getElementById('year').textContent = new Date().getFullYear();
 
     getGalleryFilenames().then(filenames => {
-      allItems = filenames.map(buildItem);
+      // Show the most recently added images first.
+      allItems = filenames.map(buildItem).reverse();
       allItems.forEach((item, index) => grid.appendChild(renderCard(item, index)));
       applyFilter('all');
     });
